@@ -68,28 +68,28 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
 
       {/* Items */}
       <div className="flex-1">
-        <div className="grid grid-cols-12 gap-4 text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] pb-3 border-b border-slate-100 mb-6">
-          <div className="col-span-8 text-left">Services Provided</div>
-          <div className="col-span-1 text-center">Qty</div>
+        <div className={`grid grid-cols-12 ${isSmall ? 'gap-2' : 'gap-4'} text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] pb-3 border-b border-slate-100 mb-6`}>
+          <div className="col-span-7 text-left">Services Provided</div>
+          <div className="col-span-2 text-center">Qty</div>
           <div className="col-span-3 text-right">Amount Due</div>
         </div>
         
         <div className="space-y-6">
           {data.items.map((item) => (
-            <div key={item.id} className="grid grid-cols-12 gap-4 items-start group">
-              <div className="col-span-8 space-y-1">
-                <p className={`font-black text-slate-800 uppercase tracking-tight ${isSmall ? 'text-[12px]' : 'text-[12px]'}`}>
+            <div key={item.id} className={`grid grid-cols-12 ${isSmall ? 'gap-2' : 'gap-4'} items-start group`}>
+              <div className="col-span-7 space-y-1">
+                <p className={`font-black text-slate-800 uppercase tracking-tight ${isSmall ? 'text-[11px]' : 'text-[12px]'}`}>
                   {item.description || 'New service engagement'}
                 </p>
                 <p className={`text-slate-400 font-medium italic ${isSmall ? 'text-[9px]' : 'text-[10px]'}`}>
-                  Fixed Unit Price: {currencySymbol} {item.unitPrice.toLocaleString()}
+                  {currencySymbol} {item.unitPrice.toLocaleString()}
                 </p>
               </div>
-              <div className={`col-span-1 text-center font-bold text-slate-600 self-center ${isSmall ? 'text-[11px]' : 'text-[11px]'}`}>
+              <div className={`col-span-2 text-center font-bold text-slate-600 self-start pt-1 ${isSmall ? 'text-[10px]' : 'text-[11px]'}`}>
                 {item.quantity}
               </div>
-              <div className={`col-span-3 text-right font-black text-slate-900 self-center ${isSmall ? 'text-[13px]' : 'text-[14px]'}`}>
-                {currencySymbol} {(item.quantity * item.unitPrice).toLocaleString()}
+              <div className={`col-span-3 text-right font-black text-slate-900 self-start pt-0.5 ${isSmall ? 'text-[12px]' : 'text-[14px]'}`}>
+                {currencySymbol}{(item.quantity * item.unitPrice).toLocaleString()}
               </div>
             </div>
           ))}
