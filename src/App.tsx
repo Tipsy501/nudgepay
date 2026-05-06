@@ -266,8 +266,8 @@ export default function App() {
               
               <div 
                 ref={previewRef}
-                className="bg-white rounded shadow-inner overflow-hidden transform scale-[0.55] xs:scale-[0.65] sm:scale-[0.8] lg:scale-[0.8] origin-top transition-all"
-                style={{ height: '400px' }}
+                className="bg-white rounded shadow-inner overflow-hidden transform scale-[0.5] xs:scale-[0.6] sm:scale-[0.7] lg:scale-[0.8] origin-top transition-all"
+                style={{ height: '440px' }}
               >
                 <InvoicePreview data={invoiceData} isSmall />
               </div>

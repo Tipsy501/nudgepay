@@ -65,9 +65,9 @@ export default function PreviewModal({ isOpen, onClose, invoiceData, previewRef,
             </div>
 
             {/* Document View */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-8 md:p-12 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent bg-slate-200/50">
-               <div className="max-w-[794px] mx-auto bg-white shadow-2xl">
-                  <div ref={previewRef} className="bg-white origin-top sm:origin-center transform scale-[0.6] xs:scale-[0.7] sm:scale-100 transition-transform">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-8 md:p-12 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent bg-slate-200/50 flex flex-col items-center">
+               <div className="w-full max-w-[794px] bg-white shadow-2xl origin-top transition-transform transform scale-[0.5] xs:scale-[0.7] sm:scale-100 my-4 sm:my-0">
+                  <div ref={previewRef} className="bg-white">
                     <InvoicePreview data={invoiceData} />
                   </div>
                </div>
