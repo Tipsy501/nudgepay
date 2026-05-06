@@ -163,17 +163,17 @@ export default function App() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden fixed inset-0 z-30 bg-white pt-20 px-6"
+            className="md:hidden fixed inset-0 z-30 bg-white pt-24 px-6"
           >
-            <div className="flex flex-col gap-6 text-lg font-medium">
+            <div className="flex flex-col gap-8 text-xl font-bold tracking-tight">
               <button 
                 onClick={() => {
                   setShowDonationModal(true);
                   setIsMobileMenuOpen(false);
                 }}
-                className="flex items-center gap-2 text-pink-600"
+                className="flex items-center gap-3 text-pink-600 p-4 bg-pink-50 rounded-2xl"
               >
-                <Heart className="w-5 h-5 fill-current" />
+                <Heart className="w-6 h-6 fill-current" />
                 Support NudgePay
               </button>
               <button
@@ -181,9 +181,9 @@ export default function App() {
                   handleDownload(hiddenCaptureRef);
                   setIsMobileMenuOpen(false);
                 }}
-                className="bg-slate-900 text-white px-6 py-3 rounded-xl flex items-center justify-center gap-3"
+                className="bg-slate-900 text-white p-6 rounded-2xl flex items-center justify-center gap-3 shadow-xl"
               >
-                <Download className="w-5 h-5" />
+                <Download className="w-6 h-6" />
                 Download PDF
               </button>
             </div>
@@ -191,7 +191,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
         <div className="lg:grid lg:grid-cols-12 gap-8 items-start">
           {/* Form Side */}
           <div className="lg:col-span-7 space-y-6">
@@ -208,20 +208,20 @@ export default function App() {
               />
             </section>
 
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
+            <div className="pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 id="preview-btn"
                 onClick={() => setShowPreviewModal(true)}
-                className="flex-1 group flex items-center justify-center gap-3 py-5 px-8 rounded-2xl bg-white border-2 border-slate-900 text-slate-900 font-bold text-lg transition-all hover:bg-slate-50 active:scale-95 shadow-sm"
+                className="flex-1 group flex items-center justify-center gap-2 sm:gap-3 py-4 sm:py-5 px-6 sm:px-8 rounded-2xl bg-white border-2 border-slate-900 text-slate-900 font-bold text-base sm:text-lg transition-all hover:bg-slate-50 active:scale-95 shadow-sm"
               >
-                <FileText className="w-6 h-6" />
-                Preview Invoice
+                <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
+                Preview
               </button>
               <button
                 id="main-download-btn"
                 onClick={() => handleDownload(hiddenCaptureRef)}
                 disabled={isExporting}
-                className={`flex-[1.5] group flex items-center justify-center gap-3 py-5 px-8 rounded-2xl text-white font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:scale-95 ${isExporting ? 'bg-slate-400 cursor-not-allowed shadow-none' : 'bg-slate-900 animate-in fade-in slide-in-from-bottom-4 duration-700'}`}
+                className={`flex-[1.5] group flex items-center justify-center gap-2 sm:gap-3 py-4 sm:py-5 px-6 sm:px-8 rounded-2xl text-white font-bold text-base sm:text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:scale-95 ${isExporting ? 'bg-slate-400 cursor-not-allowed shadow-none' : 'bg-slate-900 animate-in fade-in slide-in-from-bottom-4 duration-700'}`}
               >
                 {isExporting ? (
                   <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -258,7 +258,7 @@ export default function App() {
           </div>
 
           {/* Preview Side */}
-          <div className="mt-12 lg:mt-0 lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+          <div className="mt-8 sm:mt-12 lg:mt-0 lg:col-span-5 lg:sticky lg:top-24 space-y-6">
             <div className="bg-slate-800 p-4 sm:p-6 rounded-2xl border border-slate-700 shadow-2xl relative overflow-hidden group">
               <div className="absolute top-3 right-4 bg-blue-500 text-white text-[9px] font-bold px-2 py-0.5 rounded tracking-widest uppercase z-10">
                 Live Preview
@@ -266,8 +266,8 @@ export default function App() {
               
               <div 
                 ref={previewRef}
-                className="bg-white rounded shadow-inner overflow-hidden transform scale-[0.8] origin-top transition-all"
-                style={{ height: '580px' }}
+                className="bg-white rounded shadow-inner overflow-hidden transform scale-[0.55] xs:scale-[0.65] sm:scale-[0.8] lg:scale-[0.8] origin-top transition-all"
+                style={{ height: '400px' }}
               >
                 <InvoicePreview data={invoiceData} isSmall />
               </div>
@@ -292,76 +292,78 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="h-auto md:h-20 border-t border-gray-200 bg-white px-6 py-6 md:py-0 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex flex-col items-center md:items-start gap-1">
-          <p className="text-xs text-slate-400 font-medium">© {new Date().getFullYear()} NudgePay — Simple invoices. Global payments.</p>
-          <p className="text-[10px] text-slate-300 font-bold uppercase tracking-widest">Developed by Topzero Group</p>
-        </div>
-        
-        <div className="flex flex-wrap items-center justify-center gap-6">
-          <nav className="flex items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-tight">
-            <a href="/pages/free-invoice-generator.html" className="hover:text-slate-600 transition-colors">Free Invoice Generator</a>
-            <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
-            <a href="/pages/create-invoice-online.html" className="hover:text-slate-600 transition-colors">Create Invoice</a>
-            <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
-            <a href="/pages/about.html" className="hover:text-slate-600 transition-colors">About</a>
-          </nav>
-
-          <div className="flex items-center gap-4 border-l border-r border-slate-100 px-6">
-            <a 
-              href="https://twitter.com/nudgepayments" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-blue-400 hover:bg-blue-50 transition-all"
-              aria-label="Follow us on Twitter"
-            >
-              <Twitter className="w-4 h-4" />
-            </a>
-            <a 
-              href="https://github.com/topzerogroup/nudgepay" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-all"
-              aria-label="View source on GitHub"
-            >
-              <Github className="w-4 h-4" />
-            </a>
-            <a 
-              href="https://linkedin.com/company/topzerogroup" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all"
-              aria-label="Follow us on LinkedIn"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-            <a 
-              href="https://instagram.com/nudgepay" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-pink-500 hover:bg-pink-50 transition-all"
-              aria-label="Follow us on Instagram"
-            >
-              <Instagram className="w-4 h-4" />
-            </a>
-            <a 
-              href="https://facebook.com/nudgepay" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-blue-700 hover:bg-blue-50 transition-all"
-              aria-label="Follow us on Facebook"
-            >
-              <Facebook className="w-4 h-4" />
-            </a>
+      <footer className="w-full border-t border-gray-200 bg-white px-4 sm:px-6 py-8 md:py-10 flex flex-col items-center gap-8">
+        <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <p className="text-xs text-slate-400 font-medium text-center md:text-left">© {new Date().getFullYear()} NudgePay — Simple invoices. Global payments.</p>
+            <p className="text-[10px] text-slate-300 font-bold uppercase tracking-widest text-center md:text-left">Developed by Topzero Group</p>
           </div>
+          
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-6">
+            <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[10px] font-bold text-slate-400 uppercase tracking-tight">
+              <a href="/pages/free-invoice-generator.html" className="hover:text-slate-600 transition-colors">Free Invoice Generator</a>
+              <span className="hidden sm:inline w-1 h-1 bg-slate-200 rounded-full"></span>
+              <a href="/pages/create-invoice-online.html" className="hover:text-slate-600 transition-colors">Create Invoice</a>
+              <span className="hidden sm:inline w-1 h-1 bg-slate-200 rounded-full"></span>
+              <a href="/pages/about.html" className="hover:text-slate-600 transition-colors">About</a>
+            </nav>
 
-          <button 
-            onClick={() => setShowDonationModal(true)}
-            className="flex items-center gap-2 bg-pink-50 hover:bg-pink-100 text-pink-600 px-6 py-2.5 rounded-full text-xs font-bold transition-all border border-pink-100 shadow-sm"
-          >
-            <Heart className="w-4 h-4 fill-current" />
-            Support this free tool
-          </button>
+            <div className="flex items-center gap-4 px-6 border-slate-100 sm:border-l sm:border-r">
+              <a 
+                href="https://twitter.com/nudgepayments" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-blue-400 hover:bg-blue-50 transition-all"
+                aria-label="Follow us on Twitter"
+              >
+                <Twitter className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://github.com/topzerogroup/nudgepay" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-all"
+                aria-label="View source on GitHub"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://linkedin.com/company/topzerogroup" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all"
+                aria-label="Follow us on LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://instagram.com/nudgepay" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-pink-500 hover:bg-pink-50 transition-all"
+                aria-label="Follow us on Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://facebook.com/nudgepay" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 bg-slate-50 rounded-full text-slate-400 hover:text-blue-700 hover:bg-blue-50 transition-all"
+                aria-label="Follow us on Facebook"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+            </div>
+
+            <button 
+              onClick={() => setShowDonationModal(true)}
+              className="flex items-center gap-2 bg-pink-50 hover:bg-pink-100 text-pink-600 px-6 py-2.5 rounded-full text-xs font-bold transition-all border border-pink-100 shadow-sm"
+            >
+              <Heart className="w-4 h-4 fill-current" />
+              Support this tool
+            </button>
+          </div>
         </div>
       </footer>
 

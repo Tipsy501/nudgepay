@@ -45,7 +45,7 @@ export default function InvoiceForm({ data, onChange }: InvoiceFormProps) {
       {/* Sender & Client Section - Bento Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* From */}
-        <section className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md">
+        <section className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md">
           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-6">
             <User className="w-3.5 h-3.5" />
             Sender Info
@@ -73,7 +73,7 @@ export default function InvoiceForm({ data, onChange }: InvoiceFormProps) {
         </section>
 
         {/* To */}
-        <section className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md">
+        <section className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md">
           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-6">
             <Globe className="w-3.5 h-3.5" />
             Client Info
@@ -98,7 +98,7 @@ export default function InvoiceForm({ data, onChange }: InvoiceFormProps) {
       </div>
 
       {/* Invoice Details Bento Card */}
-      <section className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <div className="space-y-2">
           <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
             <Hash className="w-3 h-3" /> Invoice #
@@ -157,7 +157,7 @@ export default function InvoiceForm({ data, onChange }: InvoiceFormProps) {
       </section>
 
       {/* Items Section Bento Card */}
-      <section className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+      <section className="bg-white p-4 sm:p-8 rounded-2xl border border-gray-200 shadow-sm">
         <div className="flex items-center justify-between mb-8">
           <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Invoice Items</h3>
           <button
@@ -176,10 +176,11 @@ export default function InvoiceForm({ data, onChange }: InvoiceFormProps) {
             <div className="col-span-1"></div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-8 md:space-y-4">
             {data.items.map((item) => (
-              <div key={item.id} className="group relative grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <div key={item.id} className="group relative grid grid-cols-1 md:grid-cols-12 gap-4 items-start md:items-center border-b border-gray-50 pb-6 md:pb-0 md:border-none">
                 <div className="md:col-span-7">
+                  <label className="md:hidden text-[9px] font-black uppercase tracking-widest text-slate-300 mb-1 block">Description</label>
                   <input
                     type="text"
                     placeholder="UI/UX Design Phase..."
@@ -188,27 +189,31 @@ export default function InvoiceForm({ data, onChange }: InvoiceFormProps) {
                     className="w-full py-2 bg-transparent border-b border-transparent group-hover:border-gray-100 focus:border-slate-900 font-bold text-slate-700 transition-all focus:outline-none placeholder:text-gray-200"
                   />
                 </div>
-                <div className="md:col-span-2 text-center">
-                  <input
-                    type="number"
-                    value={item.quantity}
-                    onChange={(e) => updateItem(item.id, 'quantity', parseFloat(e.target.value) || 0)}
-                    className="w-full py-1 bg-slate-50 border-none rounded text-center font-bold text-slate-600 focus:ring-0"
-                  />
+                <div className="grid grid-cols-2 md:contents gap-4 w-full">
+                  <div className="md:col-span-2 text-center">
+                    <label className="md:hidden text-[9px] font-black uppercase tracking-widest text-slate-300 mb-1 block">Qty</label>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      onChange={(e) => updateItem(item.id, 'quantity', parseFloat(e.target.value) || 0)}
+                      className="w-full py-2 bg-slate-50 border-none rounded-xl text-center font-bold text-slate-600 focus:ring-2 focus:ring-slate-100"
+                    />
+                  </div>
+                  <div className="md:col-span-2 text-center">
+                    <label className="md:hidden text-[9px] font-black uppercase tracking-widest text-slate-300 mb-1 block">Unit Price</label>
+                    <input
+                      type="number"
+                      value={item.unitPrice}
+                      onChange={(e) => updateItem(item.id, 'unitPrice', parseFloat(e.target.value) || 0)}
+                      className="w-full py-2 bg-slate-50 border-none rounded-xl text-center font-bold text-slate-600 focus:ring-2 focus:ring-slate-100"
+                    />
+                  </div>
                 </div>
-                <div className="md:col-span-2 text-center">
-                  <input
-                    type="number"
-                    value={item.unitPrice}
-                    onChange={(e) => updateItem(item.id, 'unitPrice', parseFloat(e.target.value) || 0)}
-                    className="w-full py-1 bg-slate-50 border-none rounded text-center font-bold text-slate-600 focus:ring-0"
-                  />
-                </div>
-                <div className="md:col-span-1 flex items-center justify-end">
+                <div className="md:col-span-1 flex items-center justify-end pt-2 md:pt-0">
                   <button
                     onClick={() => removeItem(item.id)}
                     disabled={data.items.length === 1}
-                    className="p-2 text-slate-200 hover:text-red-500 disabled:opacity-0 transition-all"
+                    className="p-2 text-slate-200 hover:text-red-500 disabled:opacity-0 transition-all bg-slate-50 rounded-lg md:bg-transparent"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

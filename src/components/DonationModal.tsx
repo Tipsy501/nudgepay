@@ -121,25 +121,25 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="flex-1 overflow-y-auto p-10 pt-12 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
+            <div className="flex-1 overflow-y-auto p-6 sm:p-10 pt-12 sm:pt-12 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
               <motion.div 
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
                 className="flex flex-col items-center"
               >
-                <motion.div variants={itemVariants} className="w-20 h-20 bg-pink-50 text-pink-500 rounded-[2rem] flex items-center justify-center mb-8 rotate-6 shadow-sm ring-4 ring-pink-50/50 shrink-0">
-                  <Heart className="w-10 h-10 fill-current" />
+                <motion.div variants={itemVariants} className="w-16 h-16 sm:w-20 sm:h-20 bg-pink-50 text-pink-500 rounded-[1.5rem] sm:rounded-[2rem] flex items-center justify-center mb-6 sm:mb-8 rotate-6 shadow-sm ring-4 ring-pink-50/50 shrink-0">
+                  <Heart className="w-8 h-8 sm:w-10 sm:h-10 fill-current" />
                 </motion.div>
                 
-                <motion.h2 variants={itemVariants} className="text-3xl font-extrabold text-slate-900 mb-3 text-center tracking-tight px-6">
+                <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3 text-center tracking-tight px-4 sm:px-6">
                   Support <span className="text-pink-500">NudgePay</span> ❤️
                 </motion.h2>
-                <motion.p variants={itemVariants} className="text-sm text-slate-500 text-center mb-10 leading-relaxed px-4 font-medium max-w-[300px]">
+                <motion.p variants={itemVariants} className="text-sm text-slate-500 text-center mb-8 sm:mb-10 leading-relaxed px-4 font-medium max-w-[300px]">
                   Join us in keeping NudgePay free and professional for everyone.
                 </motion.p>
 
-                <motion.div variants={itemVariants} className="w-full space-y-8">
+                <motion.div variants={itemVariants} className="w-full space-y-6 sm:space-y-8">
                   {/* Amount Selection */}
                   <div className="space-y-4">
                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-1">Choose an amount</label>

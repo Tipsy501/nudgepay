@@ -34,39 +34,40 @@ export default function PreviewModal({ isOpen, onClose, invoiceData, previewRef,
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed inset-4 md:inset-10 lg:inset-y-10 lg:inset-x-auto lg:left-1/2 lg:-translate-x-1/2 lg:w-[900px] bg-slate-50 rounded-3xl shadow-2xl z-[151] overflow-hidden flex flex-col"
+            className="fixed inset-0 sm:inset-4 md:inset-10 lg:inset-y-10 lg:inset-x-auto lg:left-1/2 lg:-translate-x-1/2 lg:w-[900px] bg-slate-50 sm:rounded-3xl shadow-2xl z-[151] overflow-hidden flex flex-col"
           >
             {/* Modal Header */}
-            <div className="bg-white px-8 py-4 border-b border-gray-200 flex items-center justify-between shrink-0">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-600 rounded-lg">
-                  <Printer className="w-5 h-5 text-white" />
+            <div className="bg-white px-4 sm:px-8 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-1.5 sm:p-2 bg-blue-600 rounded-lg">
+                  <Printer className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
-                <h3 className="font-bold text-slate-900">A4 Document Preview</h3>
+                <h3 className="font-bold text-slate-900 text-sm sm:text-base line-clamp-1">Invoice Preview</h3>
               </div>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <button
                   onClick={onDownload}
                   disabled={isExporting}
-                  className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-sm transition-all ${isExporting ? 'bg-slate-200 text-slate-400' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
+                  className={`flex items-center gap-2 px-3 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all ${isExporting ? 'bg-slate-200 text-slate-400' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
                 >
-                  {isExporting ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Download className="w-4 h-4" />}
-                  Download PDF
+                  {isExporting ? <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Download className="w-3 h-3 sm:w-4 sm:h-4" />}
+                  <span className="hidden xs:inline">Download PDF</span>
+                  <span className="xs:hidden">PDF</span>
                 </button>
                 <button 
                   onClick={onClose}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
-                  <X className="w-6 h-6 text-slate-400" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400" />
                 </button>
               </div>
             </div>
 
             {/* Document View */}
-            <div className="flex-1 overflow-y-auto p-8 md:p-12 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
-               <div className="max-w-[794px] mx-auto bg-white shadow-lg">
-                  <div ref={previewRef} className="bg-white">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-8 md:p-12 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent bg-slate-200/50">
+               <div className="max-w-[794px] mx-auto bg-white shadow-2xl">
+                  <div ref={previewRef} className="bg-white origin-top sm:origin-center transform scale-[0.6] xs:scale-[0.7] sm:scale-100 transition-transform">
                     <InvoicePreview data={invoiceData} />
                   </div>
                </div>
