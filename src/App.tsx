@@ -299,7 +299,15 @@ export default function App() {
         </div>
         
         <div className="flex flex-wrap items-center justify-center gap-6">
-          <div className="flex items-center gap-4 border-r border-slate-100 pr-6 mr-2">
+          <nav className="flex items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-tight">
+            <a href="/pages/free-invoice-generator.html" className="hover:text-slate-600 transition-colors">Free Invoice Generator</a>
+            <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
+            <a href="/pages/create-invoice-online.html" className="hover:text-slate-600 transition-colors">Create Invoice</a>
+            <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
+            <a href="/pages/about.html" className="hover:text-slate-600 transition-colors">About</a>
+          </nav>
+
+          <div className="flex items-center gap-4 border-l border-r border-slate-100 px-6">
             <a 
               href="https://twitter.com/nudgepayments" 
               target="_blank" 
