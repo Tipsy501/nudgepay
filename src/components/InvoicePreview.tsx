@@ -19,8 +19,8 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
   const total = subtotal + taxAmount;
 
   const containerClasses = isSmall 
-    ? "bg-white p-6 sm:p-10 min-h-[842px] flex flex-col font-sans text-slate-900 border border-gray-100"
-    : "bg-white p-12 sm:p-20 min-h-[1123px] flex flex-col font-sans text-slate-900"; // A4 is roughly 794x1123 at 96dpi
+    ? "bg-white p-8 sm:p-10 min-h-[1123px] w-[794px] flex flex-col font-sans text-slate-900 border border-gray-100"
+    : "bg-white p-12 sm:p-20 min-h-[1123px] w-[794px] flex flex-col font-sans text-slate-900"; // A4 is 794x1123 at 96dpi
 
   return (
     <div className={containerClasses}>
@@ -33,7 +33,7 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
             </h2>
             <div className={`h-1 bg-slate-900 ${isSmall ? 'w-10' : 'w-16'}`}></div>
           </div>
-          <p className={`text-slate-400 font-bold uppercase tracking-[0.1em] whitespace-pre-wrap leading-relaxed ${isSmall ? 'text-[9px] max-w-[200px]' : 'text-[10px] max-w-[280px]'}`}>
+          <p className={`text-slate-400 font-bold uppercase tracking-[0.1em] whitespace-pre-wrap leading-relaxed ${isSmall ? 'text-[10px] max-w-[200px]' : 'text-[10px] max-w-[280px]'}`}>
             {data.senderAddress || 'Sender Address Details'}
           </p>
         </div>
@@ -69,26 +69,26 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
       {/* Items */}
       <div className="flex-1">
         <div className={`grid grid-cols-12 ${isSmall ? 'gap-2' : 'gap-4'} text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] pb-3 border-b border-slate-100 mb-6`}>
-          <div className="col-span-7 text-left">Services Provided</div>
+          <div className="col-span-6 text-left">Services Provided</div>
           <div className="col-span-2 text-center">Qty</div>
-          <div className="col-span-3 text-right">Amount Due</div>
+          <div className="col-span-4 text-right">Amount Due</div>
         </div>
         
         <div className="space-y-6">
           {data.items.map((item) => (
             <div key={item.id} className={`grid grid-cols-12 ${isSmall ? 'gap-2' : 'gap-4'} items-start group`}>
-              <div className="col-span-7 space-y-1">
-                <p className={`font-black text-slate-800 uppercase tracking-tight ${isSmall ? 'text-[11px]' : 'text-[12px]'}`}>
+              <div className="col-span-6 space-y-1">
+                <p className={`font-black text-slate-800 uppercase tracking-tight text-[12px]`}>
                   {item.description || 'New service engagement'}
                 </p>
-                <p className={`text-slate-400 font-medium italic ${isSmall ? 'text-[9px]' : 'text-[10px]'}`}>
+                <p className={`text-slate-400 font-medium italic text-[10px]`}>
                   {currencySymbol} {item.unitPrice.toLocaleString()}
                 </p>
               </div>
-              <div className={`col-span-2 text-center font-bold text-slate-600 self-start pt-1 ${isSmall ? 'text-[10px]' : 'text-[11px]'}`}>
+              <div className={`col-span-2 text-center font-bold text-slate-600 self-start pt-1 text-[11px]`}>
                 {item.quantity}
               </div>
-              <div className={`col-span-3 text-right font-black text-slate-900 self-start pt-0.5 ${isSmall ? 'text-[12px]' : 'text-[14px]'}`}>
+              <div className={`col-span-4 text-right font-black text-slate-900 self-start pt-0.5 ${isSmall ? 'text-[13px]' : 'text-[14px]'}`}>
                 {currencySymbol}{(item.quantity * item.unitPrice).toLocaleString()}
               </div>
             </div>
