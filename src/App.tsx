@@ -259,29 +259,49 @@ export default function App() {
 
           {/* Preview Side */}
           <div className="mt-8 sm:mt-12 lg:mt-0 lg:col-span-5 lg:sticky lg:top-24 space-y-6">
-            <div className="bg-slate-800 p-4 sm:p-6 rounded-2xl border border-slate-700 shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-3 right-4 bg-blue-500 text-white text-[9px] font-bold px-2 py-0.5 rounded tracking-widest uppercase z-10">
-                Live Preview
+            <div className="bg-slate-700 rounded-2xl border border-slate-600 shadow-2xl relative overflow-hidden group flex flex-col h-[600px] sm:h-[700px] lg:h-[800px]">
+              {/* Viewer Toolbar */}
+              <div className="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-600 shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className="p-1.5 bg-blue-500 rounded text-white">
+                    <FileText className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest hidden xs:block">
+                    {invoiceData.invoiceNumber || 'Draft'}.pdf
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="px-2 py-0.5 bg-slate-900 rounded text-[9px] font-black text-slate-400 uppercase">
+                    100%
+                  </div>
+                  <button 
+                    onClick={() => setShowPreviewModal(true)}
+                    className="p-1 px-2 hover:bg-slate-600 rounded text-[10px] font-bold text-slate-300 transition-colors flex items-center gap-1.5"
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                    <span>View More</span>
+                  </button>
+                </div>
               </div>
               
-              <div 
-                ref={previewRef}
-                className="bg-white rounded shadow-inner overflow-hidden transform scale-[0.4] xs:scale-[0.5] sm:scale-[0.7] lg:scale-[0.8] origin-top transition-all"
-                style={{ height: '640px' }}
-              >
-                <InvoicePreview data={invoiceData} isSmall />
+              {/* Viewer Body */}
+              <div className="flex-1 overflow-auto bg-slate-900/50 p-4 sm:p-8 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent flex justify-center">
+                <div 
+                  ref={previewRef}
+                  className="bg-white shadow-2xl origin-top transition-transform transform scale-[0.4] xs:scale-[0.5] sm:scale-[0.7] lg:scale-[0.5] xl:scale-[0.65] 2xl:scale-[0.8]"
+                >
+                  <InvoicePreview data={invoiceData} isSmall />
+                </div>
               </div>
               
-              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-800 to-transparent flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900 to-transparent flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                  <button 
                   onClick={() => setShowPreviewModal(true)}
-                  className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold py-2 px-6 rounded-full hover:bg-white/20 transition-all"
+                  className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold py-2 px-6 rounded-full hover:bg-white/20 transition-all pointer-events-auto shadow-lg"
                  >
-                   View Full Size
+                   Open Full Screen
                  </button>
               </div>
-
-              {/* Mobile overlay indicator if needed, but here we just show it */}
             </div>
 
             {/* Sidebar Ad (Desktop) */}

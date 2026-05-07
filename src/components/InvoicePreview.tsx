@@ -41,12 +41,12 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
         <div className="text-right space-y-6">
           <div>
             <h1 className={`font-black text-slate-900 tracking-tighter leading-none mb-1 ${isSmall ? 'text-3xl' : 'text-5xl'}`}>INVOICE</h1>
-            <p className={`font-black text-slate-300 uppercase tracking-[0.2em] ${isSmall ? 'text-[9px]' : 'text-[12px]'}`}>
+            <p className={`font-black text-slate-500 uppercase tracking-[0.2em] ${isSmall ? 'text-[9px]' : 'text-[12px]'}`}>
               REF #{data.invoiceNumber || '000'}
             </p>
           </div>
           <div className="space-y-1 flex flex-col items-end">
-            <p className="text-[9px] font-black text-slate-200 uppercase tracking-widest">Transaction Date</p>
+            <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Transaction Date</p>
             <p className={`font-bold text-slate-900 ${isSmall ? 'text-[11px]' : 'text-sm'}`}>{data.invoiceDate || 'YYYY-MM-DD'}</p>
           </div>
         </div>
@@ -55,12 +55,12 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
       {/* Bill To & Dates */}
       <div className={`grid grid-cols-2 gap-8 mb-12 border-y border-slate-50 ${isSmall ? 'py-6' : 'py-10'}`}>
         <div>
-          <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mb-3">Billed To</p>
+          <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Billed To</p>
           <p className={`font-black text-slate-900 mb-1 ${isSmall ? 'text-base' : 'text-lg'}`}>{data.clientName || 'Client Name'}</p>
           <p className={`text-slate-400 font-bold uppercase tracking-tight ${isSmall ? 'text-[9px]' : 'text-[10px]'}`}>{data.clientEmail || 'client@email.com'}</p>
         </div>
         <div className="text-right">
-          <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mb-3">Action Required By</p>
+          <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Action Required By</p>
           <p className={`font-black text-slate-900 ${isSmall ? 'text-base' : 'text-lg'}`}>{data.dueDate || 'YYYY-MM-DD'}</p>
           <p className={`text-slate-300 font-medium uppercase tracking-widest ${isSmall ? 'text-[8px]' : 'text-[8px]'}`}>Net Terms Applies</p>
         </div>
@@ -68,7 +68,7 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
 
       {/* Items */}
       <div className="flex-1">
-        <div className={`grid grid-cols-12 ${isSmall ? 'gap-2' : 'gap-4'} text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] pb-3 border-b border-slate-100 mb-6`}>
+        <div className={`grid grid-cols-12 ${isSmall ? 'gap-2' : 'gap-4'} text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] pb-3 border-b border-slate-100 mb-6`}>
           <div className="col-span-6 text-left">Services Provided</div>
           <div className="col-span-2 text-center">Qty</div>
           <div className="col-span-4 text-right">Amount Due</div>
@@ -107,12 +107,12 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
 
         <div className={`w-full ${isSmall ? 'md:w-56' : 'md:w-72'}`}>
           <div className="space-y-2 mb-6 text-right">
-            <div className="flex justify-between items-center text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+            <div className="flex justify-between items-center text-[10px] font-bold text-slate-500 uppercase tracking-widest">
               <span>Gross Subtotal</span>
               <span className="text-slate-500">{currencySymbol} {subtotal.toLocaleString()}</span>
             </div>
             {data.taxRate > 0 && (
-              <div className="flex justify-between items-center text-[10px] font-bold text-slate-300 uppercase tracking-widest">
+              <div className="flex justify-between items-center text-[10px] font-bold text-slate-500 uppercase tracking-widest">
                 <span>Value Added Tax ({data.taxRate}%)</span>
                 <span className="text-slate-500">{currencySymbol} {taxAmount.toLocaleString()}</span>
               </div>
@@ -130,7 +130,7 @@ export default function InvoicePreview({ data, isSmall = false }: InvoicePreview
 
       {/* Footer */}
       <div className={`mt-20 pt-8 border-t border-slate-50 text-center ${isSmall ? 'mt-12' : ''}`}>
-        <p className={`font-black text-slate-200 uppercase tracking-[0.4em] ${isSmall ? 'text-[7px]' : 'text-[8px]'}`}>
+        <p className={`font-black text-slate-400 uppercase tracking-[0.4em] ${isSmall ? 'text-[7px]' : 'text-[8px]'}`}>
           Document authenticated & secured via NudgePay
         </p>
       </div>
